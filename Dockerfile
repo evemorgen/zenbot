@@ -19,4 +19,4 @@ RUN apk add wget bash
 ENV NODE_ENV production
 
 ENTRYPOINT ["/app/zenbot.sh"]
-CMD [ "/bin/bash", "-c", "wget -q $CONFIG_URL -O /app/conf.js && trade --paper" ]
+CMD [ "trade", "--paper" ]
