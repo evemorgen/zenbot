@@ -42,6 +42,7 @@ module.exports = function api () {
     app.get('/', function (req, res) {
       app.locals.moment = moment
       app.locals.deposit = tradeObject.options.deposit
+      app.locals.strategy = tradeObject.options.strategy
       let datas = JSON.parse(JSON.stringify(objectWithoutKey(tradeObject, 'options'))) // deep copy to prevent alteration
       res.render('dashboard', datas)
     })

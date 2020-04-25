@@ -14,8 +14,9 @@ COPY --from=builder /app/node_modules /app/node_modules/
 COPY --from=builder /app/dist /app/dist/
 
 RUN ln -s /app/zenbot.sh /usr/local/bin/zenbot
+RUN apk add wget bash
 
 ENV NODE_ENV production
 
 ENTRYPOINT ["/app/zenbot.sh"]
-CMD [ "trade", "--paper" ]
+CMD [ "/bin/bash", "-c", "wget -q $CONFIG_URL -O /app/conf.js && trade --paper" ]

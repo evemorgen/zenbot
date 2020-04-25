@@ -20,6 +20,7 @@ services:
       - mongodb
     environment:
       - MONGODB_PORT_27017_TCP_ADDR=mongodb
+      - CONFIG_URL=http://host.docker.internal:8000/conf.js
     stdin_open: true
   mongodb:
     image: mongo:latest
