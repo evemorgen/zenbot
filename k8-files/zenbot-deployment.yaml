@@ -14,9 +14,7 @@ spec:
     spec:
       containers:
       - name: zenbot
-        image: evemorgen/zenbot:latest
-        command: ["tail"]
-        args: ["-f", "/dev/null"]
+        image: evemorgen/zenbot:k8-1
         ports:
         - containerPort: 17365
         volumeMounts:
@@ -25,6 +23,6 @@ spec:
       volumes:
         - name: config-volume
           configMap:
-            name: zenbot-macd
+            name: zenbot-momentum
 
 
