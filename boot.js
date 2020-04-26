@@ -32,6 +32,15 @@ module.exports = function (cb) {
   // 3. Load conf-sample.js and merge
   var defaults = require('./conf-sample')
   _.defaultsDeep(config, overrides, conf, defaults)
+
+  // 4. Override with k8 configmap
+  if (fs.existsSync("/etc/config/appconfig.json")) {
+    var overrides = JSON.parse(fs.readFileSync('/etc/config/appconfig.json'));
+    Object.keys(overrides).forEach(function (k) {
+      config[k] = overrides[k]
+    })
+  }
+
   zenbot.conf = config
 
   var eventBus = new EventEmitter()

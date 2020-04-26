@@ -27,7 +27,7 @@ simulations/*
 models/**/*.json
 models/**/*.html
 *.pyc
-*.swp
+*.sw[pow]
 temp.html
 logs
 .sync

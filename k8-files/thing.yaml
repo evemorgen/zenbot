@@ -1,0 +1,47 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: zenbot-macd
+data:
+  appconfig.json: |
+    {
+      "mongo": {
+        "db": "zenbot4-macd",
+        "host": "mongodb.dbs",
+        "port": 27017,
+        "username": null,
+        "password": null,
+        "replicaSet": null,
+        "authMechanism": null
+      },
+      "selector": "gdax.BTC-USD",
+      "strategy": "macd",
+      "sell_rate": -0.006,
+      "overbought_rsi": 65,
+      "oversold_rsi": 40,
+      "sell_stop_pct": 0,
+      "buy_stop_pct": 0,
+      "profit_stop_enable_pct": 10,
+      "profit_stop_pct": 4,
+      "order_adjust_time": 500,
+      "order_poll_time": 5000,
+      "wait_for_settlement": 5000,
+      "poll_trades": 5000,
+      "currency_capital": 100,
+      "balance_snapshot_period": "5m",
+      "notifiers": {
+        "only_completed_trades": false,
+        "ifttt": {
+          "on": true,
+          "makerKey": "gen5diSlYJhyjRcb2BmCM9LUVRY1p0Rfb4z_BUsGuvs",
+          "eventName": "zenbot"
+        }
+      },
+      "output": {
+        "api": {
+          "on": true,
+          "ip": "0.0.0.0",
+          "port": 17365
+        }
+      }
+    }

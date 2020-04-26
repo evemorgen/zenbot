@@ -87,6 +87,12 @@ module.exports = function (program, conf) {
           so[k] = cmd[k]
         }
       })
+      if (fs.existsSync("/etc/config/appconfig.json")) {
+        var overrides = JSON.parse(fs.readFileSync('/etc/config/appconfig.json'));
+        Object.keys(overrides).forEach(function (k) {
+          so[k] = overrides[k]
+        })
+      }
       so.currency_increment = cmd.currency_increment
       so.keep_lookback_periods = cmd.keep_lookback_periods
       so.use_prev_trades = (cmd.use_prev_trades||conf.use_prev_trades)
@@ -98,7 +104,8 @@ module.exports = function (program, conf) {
         console.log(('--buy_max_amt is deprecated, use --deposit instead!\n').red)
         so.deposit = so.buy_max_amt
       }
-      so.selector = objectifySelector(selector || conf.selector)      
+      console.log(so);
+      so.selector = objectifySelector(selector || conf.selector)
       var engine = engineFactory(s, conf)
       var collectionServiceInstance = collectionService(conf)
       if (!so.min_periods) so.min_periods = 1

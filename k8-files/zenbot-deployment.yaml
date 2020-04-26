@@ -1,0 +1,30 @@
+apiVersion: apps/v1 # for versions before 1.9.0 use apps/v1beta2
+kind: Deployment
+metadata:
+  name: zenbot-deployment
+spec:
+  selector:
+    matchLabels:
+      app: zenbot
+  replicas: 1 # tells deployment to run 2 pods matching the template
+  template:
+    metadata:
+      labels:
+        app: zenbot
+    spec:
+      containers:
+      - name: zenbot
+        image: evemorgen/zenbot:latest
+        command: ["tail"]
+        args: ["-f", "/dev/null"]
+        ports:
+        - containerPort: 17365
+        volumeMounts:
+          - name: config-volume
+            mountPath: /etc/config
+      volumes:
+        - name: config-volume
+          configMap:
+            name: zenbot-macd
+
+
