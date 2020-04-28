@@ -38,8 +38,8 @@ module.exports = function container (conf) {
   var exchange = {
     name: 'poloniex',
     historyScan: 'backward',
-    makerFee: 0.15,
-    takerFee: 0.25,
+    makerFee: 0.09,
+    takerFee: 0.09,
     offset: 43200,
 
     getProducts: function () {
