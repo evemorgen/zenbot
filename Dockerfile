@@ -15,6 +15,7 @@ COPY --from=builder /app/dist /app/dist/
 
 RUN ln -s /app/zenbot.sh /usr/local/bin/zenbot
 RUN apk add wget bash
+RUN find /app -name '*.sw[pow]' -exec rm -f {} +
 
 ENV NODE_ENV production
 
